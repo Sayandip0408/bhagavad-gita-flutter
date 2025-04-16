@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:bhagavad_gita/screens/VerseScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 
@@ -20,7 +21,6 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
   bool isLoading = true;
   int currentPage = 0;
   final int versesPerPage = 5;
-
 
   @override
   void initState() {
@@ -77,11 +77,10 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
           child: Row(
             children: [
               Icon(CupertinoIcons.back, size: 24, color: Color(0xFFE36E00)),
-
               SizedBox(width: 4),
               Text(
                 'BG Chapter ${widget.chapterId}',
-                style: TextStyle(
+                style: GoogleFonts.inter(
                   color: Color(0xFFE36E00),
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
@@ -101,7 +100,7 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
                     children: [
                       Text(
                         chapterData!['name_translated'] ?? 'No Name',
-                        style: TextStyle(
+                        style: GoogleFonts.inter(
                           fontSize: 22,
                           fontWeight: FontWeight.w900,
                           color: Color(0xFFE36E00),
@@ -113,8 +112,8 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
                         chapterData!['chapter_summary'] ??
                             'No summary available',
                         textAlign: TextAlign.justify,
-                        style: TextStyle(
-                          fontSize: 15,
+                        style: GoogleFonts.inter(
+                          fontSize: 14,
                           color: CupertinoColors.secondaryLabel,
                           decoration: TextDecoration.none,
                         ),
@@ -126,6 +125,7 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
                       ),
                       SizedBox(height: 25),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
                             CupertinoIcons.list_bullet_below_rectangle,
@@ -136,7 +136,7 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
                           ),
                           Text(
                             "Total Verses: ${chapterData!['verses_count'] ?? 0}",
-                            style: TextStyle(
+                            style: GoogleFonts.inter(
                               fontWeight: FontWeight.w800,
                               fontSize: 16,
                               color: Color(0xFFE36E00),
@@ -146,7 +146,6 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
                         ],
                       ),
                       SizedBox(height: 12),
-
                       Column(
                         children: [
                           // Pagination Buttons
@@ -162,13 +161,30 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
                                   },
                                   child: Row(
                                     children: [
-                                      Icon(CupertinoIcons.left_chevron, size: 16, color: Colors.red,),
-                                      Text("Previous", style: TextStyle(color: Colors.red, fontWeight: FontWeight.w700),),
+                                      Icon(
+                                        CupertinoIcons.left_chevron,
+                                        size: 16,
+                                        color: Colors.red,
+                                      ),
+                                      Text(
+                                        "Previous",
+                                        style: GoogleFonts.inter(
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.w700),
+                                      ),
                                     ],
                                   ),
                                 ),
-                              Text("|", style: TextStyle(decoration: TextDecoration.none, fontSize: 10, color: Colors.black87,),),
-                              if ((currentPage + 1) * versesPerPage < versesData!.length)
+                              Text(
+                                "|",
+                                style: GoogleFonts.inter(
+                                  decoration: TextDecoration.none,
+                                  fontSize: 10,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                              if ((currentPage + 1) * versesPerPage <
+                                  versesData!.length)
                                 TextButton(
                                   onPressed: () {
                                     setState(() {
@@ -177,8 +193,17 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
                                   },
                                   child: Row(
                                     children: [
-                                      Text("Next", style: TextStyle(color: Colors.green, fontWeight: FontWeight.w700),),
-                                      Icon(CupertinoIcons.right_chevron, size: 16, color: Colors.green,),
+                                      Text(
+                                        "Next",
+                                        style: GoogleFonts.inter(
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      Icon(
+                                        CupertinoIcons.right_chevron,
+                                        size: 16,
+                                        color: Colors.green,
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -203,13 +228,14 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "VERSE: ${verse['verse_number']}",
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w600,
+                                        style: GoogleFonts.inter(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
                                           color: CupertinoColors.activeBlue,
                                           decoration: TextDecoration.none,
                                         ),
@@ -217,24 +243,30 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
                                       SizedBox(height: 8),
                                       Text(
                                         verse['translations'] != null &&
-                                            verse['translations'].isNotEmpty
+                                                verse['translations'].isNotEmpty
                                             ? cleanVerseText(
-                                            verse['translations'].firstWhere(
-                                                  (t) => t['language'] == 'english',
-                                              orElse: () => {'description': ''},
-                                            )['description'] ??
-                                                '')
+                                                verse['translations']
+                                                        .firstWhere(
+                                                      (t) =>
+                                                          t['language'] ==
+                                                          'english',
+                                                      orElse: () =>
+                                                          {'description': ''},
+                                                    )['description'] ??
+                                                    '')
                                             : 'No translation available',
                                         textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
                                           color: CupertinoColors.secondaryLabel,
                                           decoration: TextDecoration.none,
                                         ),
                                       ),
                                       SizedBox(height: 12),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
                                         children: [
                                           TextButton(
                                             onPressed: () {
@@ -242,9 +274,11 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
                                                 context,
                                                 CupertinoPageRoute(
                                                   builder: (_) => VerseScreen(
-                                                    chapterId: widget.chapterId,
-                                                    verseId: verse['verse_number'] as int
-                                                  ),
+                                                      chapterId:
+                                                          widget.chapterId,
+                                                      verseId:
+                                                          verse['verse_number']
+                                                              as int),
                                                 ),
                                               );
                                             },
@@ -252,7 +286,10 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
                                               children: [
                                                 Text(
                                                   "Read Now",
-                                                  style: TextStyle(color: Color(0xFFE36E00)),
+                                                  style: GoogleFonts.inter(
+                                                      color: Color(0xFFE36E00),
+                                                      fontWeight:
+                                                          FontWeight.w700),
                                                 ),
                                                 SizedBox(width: 5),
                                                 Icon(
@@ -285,13 +322,30 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
                                   },
                                   child: Row(
                                     children: [
-                                      Icon(CupertinoIcons.left_chevron, size: 16, color: Colors.red,),
-                                      Text("Previous", style: TextStyle(color: Colors.red, fontWeight: FontWeight.w700),),
+                                      Icon(
+                                        CupertinoIcons.left_chevron,
+                                        size: 16,
+                                        color: Colors.red,
+                                      ),
+                                      Text(
+                                        "Previous",
+                                        style: GoogleFonts.inter(
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.w700),
+                                      ),
                                     ],
                                   ),
                                 ),
-                              Text("|", style: TextStyle(decoration: TextDecoration.none, fontSize: 10, color: Colors.black87,),),
-                              if ((currentPage + 1) * versesPerPage < versesData!.length)
+                              Text(
+                                "|",
+                                style: GoogleFonts.inter(
+                                  decoration: TextDecoration.none,
+                                  fontSize: 10,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                              if ((currentPage + 1) * versesPerPage <
+                                  versesData!.length)
                                 TextButton(
                                   onPressed: () {
                                     setState(() {
@@ -300,8 +354,17 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
                                   },
                                   child: Row(
                                     children: [
-                                      Text("Next", style: TextStyle(color: Colors.green, fontWeight: FontWeight.w700),),
-                                      Icon(CupertinoIcons.right_chevron, size: 16, color: Colors.green,),
+                                      Text(
+                                        "Next",
+                                        style: GoogleFonts.inter(
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      Icon(
+                                        CupertinoIcons.right_chevron,
+                                        size: 16,
+                                        color: Colors.green,
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -309,8 +372,6 @@ class _SingleChapterScreenState extends State<SingleChapterScreen> {
                           ),
                         ],
                       )
-
-
                     ],
                   ),
                 ),

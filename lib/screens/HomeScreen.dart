@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Color(0xFFffffff),
         title: Text(
           "Bhagavad Gita",
-          style: TextStyle(
+          style: GoogleFonts.inter(
             fontWeight: FontWeight.w800,
             fontSize: 28,
           ),
@@ -124,10 +124,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text("Search Chapter / Verse", style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        )),
+                        Text("Search Chapter / Verse",
+                            style: GoogleFonts.inter(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            )),
                         const SizedBox(height: 20),
                         TextField(
                           controller: chapterController,
@@ -154,7 +155,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
                             if (chapterText.isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text("Please enter a chapter number")),
+                                SnackBar(
+                                    content:
+                                        Text("Please enter a chapter number")),
                               );
                               return;
                             }
@@ -162,9 +165,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             final chapter = int.tryParse(chapterText);
                             final verse = int.tryParse(verseText);
 
-                            if (chapter == null || chapter < 1 || chapter > 18) {
+                            if (chapter == null ||
+                                chapter < 1 ||
+                                chapter > 18) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text("Enter a valid chapter (1–18)")),
+                                SnackBar(
+                                    content:
+                                        Text("Enter a valid chapter (1–18)")),
                               );
                               return;
                             }
@@ -183,7 +190,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             } else {
                               if (verse == null || verse < 1 || verse > 78) {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text("Enter a valid verse number")),
+                                  SnackBar(
+                                      content:
+                                          Text("Enter a valid verse number")),
                                 );
                                 return;
                               }
@@ -201,7 +210,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xFFE36E00),
-                            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 12),
                           ),
                           child: Text(
                             "Search",
@@ -354,15 +364,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                         CupertinoPageRoute(
                                           builder: (_) => VerseScreen(
                                               chapterId: data['chapter'],
-                                              verseId: data['verse'] as int
-                                          ),
+                                              verseId: data['verse'] as int),
                                         ),
                                       );
                                     },
                                     child: Text(
                                       "See More",
-                                      style:
-                                      GoogleFonts.inter(color: Color(0xFFE36E00), fontWeight: FontWeight.w700),
+                                      style: GoogleFonts.inter(
+                                          color: Color(0xFFE36E00),
+                                          fontWeight: FontWeight.w700),
                                     )),
                               ],
                             ),
@@ -414,7 +424,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Card(
@@ -476,7 +485,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-
           ],
         ),
       ),

@@ -109,7 +109,7 @@ class _VerseScreenState extends State<VerseScreen> {
               const SizedBox(width: 4),
               Text(
                 'BG ${widget.chapterId}.${widget.verseId}',
-                style: const TextStyle(
+                style: GoogleFonts.inter(
                   color: Color(0xFFE36E00),
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
@@ -119,117 +119,118 @@ class _VerseScreenState extends State<VerseScreen> {
           ),
         ),
       ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: isLoading
-              ? const Center(child: CupertinoActivityIndicator())
-              : error.isNotEmpty
-                  ? Center(child: Text(error))
-                  : verseData == null
-                      ? const Center(child: Text('No data found'))
-                      : SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Text(
-                              //   'Sanskrit:',
-                              //   style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w700, decoration: TextDecoration.none, color: Color(0xFFE36E00)),
-                              // ),
-                              Text(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: isLoading
+            ? const Center(child: CupertinoActivityIndicator())
+            : error.isNotEmpty
+                ? Center(child: Text(error))
+                : verseData == null
+                    ? const Center(child: Text('No data found'))
+                    : SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Text(
+                            //   'Sanskrit:',
+                            //   style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w700, decoration: TextDecoration.none, color: Color(0xFFE36E00)),
+                            // ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
                                 verseData!['text'] ?? '',
                                 textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontSize: 20,
-                                    decoration: TextDecoration.none,
-                                    color: Color(0xFFE36E00)),
-                              ),
-                              const SizedBox(height: 20),
-                              Text(
-                                'Translations:',
-                                textAlign: TextAlign.center,
                                 style: GoogleFonts.inter(
                                     fontSize: 20,
-                                    fontWeight: FontWeight.w700,
                                     decoration: TextDecoration.none,
                                     color: Color(0xFFE36E00)),
                               ),
-                              ...List<Widget>.from(
-                                (verseData!['translations'] as List).map(
-                                  (item) => Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '${item['author_name']}:',
-                                          style: GoogleFonts.inter(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w700,
-                                              decoration: TextDecoration.none,
-                                              color: Color(0xFF353026)),
-                                        ),
-                                        Text(
-                                          '${item['description']}',
-                                          style: GoogleFonts.inter(
-                                              fontSize: 14,
-                                              decoration: TextDecoration.none,
-                                              color: CupertinoColors
-                                                  .secondaryLabel),
-                                        ),
-                                      ],
-                                    ),
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              'Translations:',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.inter(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
+                                  decoration: TextDecoration.none,
+                                  color: Color(0xFFE36E00)),
+                            ),
+                            ...List<Widget>.from(
+                              (verseData!['translations'] as List).map(
+                                (item) => Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '${item['author_name']}:',
+                                        style: GoogleFonts.inter(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w700,
+                                            decoration: TextDecoration.none,
+                                            color: Color(0xFF353026)),
+                                      ),
+                                      Text(
+                                        '${item['description']}',
+                                        style: GoogleFonts.inter(
+                                            fontSize: 14,
+                                            decoration: TextDecoration.none,
+                                            color: CupertinoColors
+                                                .secondaryLabel),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 20),
-                              Text(
-                                'Commentary:',
-                                style: GoogleFonts.inter(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration.none,
-                                    color: Color(0xFFE36E00)),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                (verseData!['commentaries'] as List).isNotEmpty
-                                    ? verseData!['commentaries'][0]
-                                        ['description']
-                                    : 'No commentary available.',
-                                style: const TextStyle(
-                                    fontSize: 14,
-                                    decoration: TextDecoration.none,
-                                    color: CupertinoColors.secondaryLabel),
-                              ),
-                              SizedBox(height: 25,),
-                              Container(
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10),
-                                  ),
-                                ),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'Jai Shri Krishna',
-                                  style: GoogleFonts.playfairDisplay(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration.none
-                                  ),
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              'Commentary:',
+                              style: GoogleFonts.inter(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.none,
+                                  color: Color(0xFFE36E00)),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              (verseData!['commentaries'] as List).isNotEmpty
+                                  ? verseData!['commentaries'][0]
+                                      ['description']
+                                  : 'No commentary available.',
+                              style: GoogleFonts.inter(
+                                  fontSize: 14,
+                                  decoration: TextDecoration.none,
+                                  color: CupertinoColors.secondaryLabel),
+                            ),
+                            SizedBox(height: 25,),
+                            Container(
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10),
                                 ),
                               ),
-                            ],
-                          ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Jai Shri Krishna',
+                                style: GoogleFonts.playfairDisplay(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.none
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-        ),
+                      ),
       ),
     );
   }

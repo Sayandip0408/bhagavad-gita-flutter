@@ -53,7 +53,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
         scrolledUnderElevation: 0,
         title: Text(
           "Chapters",
-          style: TextStyle(
+          style: GoogleFonts.inter(
             fontWeight: FontWeight.w800,
             fontSize: 28,
           ),
@@ -193,7 +193,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                       children: [
                         Text(
                           "${chapter['chapter_number'] ?? ''}. ${chapter['name_translated'] ?? 'No name'}",
-                          style: TextStyle(
+                          style: GoogleFonts.inter(
                               fontWeight: FontWeight.w600,
                               color: Color(0xFFE36E00)),
                         ),
@@ -203,7 +203,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.justify,
-                          style: TextStyle(
+                          style: GoogleFonts.inter(
                               fontSize: 13,
                               color: CupertinoColors.secondaryLabel),
                         ),
@@ -219,7 +219,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                             ),
                             Text(
                               "${chapter['verses_count'] ?? 0} verses",
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                   color: CupertinoColors.secondaryLabel),

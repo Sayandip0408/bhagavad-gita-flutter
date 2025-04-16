@@ -18,7 +18,7 @@ class _LandingScreenState extends State<LandingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: NavigationBar(
-        // backgroundColor: Color(0xFF101110),
+        height: 60,
         backgroundColor: Colors.white,
         onDestinationSelected: (int index) {
           setState(() {
@@ -26,31 +26,52 @@ class _LandingScreenState extends State<LandingScreen> {
           });
         },
         indicatorColor: Color(0xFF101110),
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(
-            selectedIcon: Icon(CupertinoIcons.house_fill, color: Colors.white,),
-            icon: Icon(CupertinoIcons.house),
+            selectedIcon: Icon(
+              CupertinoIcons.house_fill,
+              color: Colors.white,
+              size: 20,
+            ),
+            icon: Icon(
+              CupertinoIcons.house,
+              size: 20,
+            ),
             label: 'Home',
           ),
           NavigationDestination(
-            selectedIcon: Icon(CupertinoIcons.book_fill, color: Colors.white,),
-            icon: Icon(CupertinoIcons.book),
+            selectedIcon: Icon(
+              CupertinoIcons.book_fill,
+              color: Colors.white,
+              size: 20,
+            ),
+            icon: Icon(
+              CupertinoIcons.book,
+              size: 20,
+            ),
             label: 'Chapters',
           ),
           NavigationDestination(
-            selectedIcon: Icon(CupertinoIcons.info_circle_fill, color: Colors.white,),
-            icon: Icon(CupertinoIcons.info_circle),
+            selectedIcon: Icon(
+              CupertinoIcons.info_circle_fill,
+              color: Colors.white,
+              size: 20,
+            ),
+            icon: Icon(
+              CupertinoIcons.info_circle,
+              size: 20,
+            ),
             label: 'About',
           ),
         ],
       ),
       body: <Widget>[
         /// Home page
-        // HomeScreen(),
         HomeScreen(onReadNowPressed: () {
           setState(() {
-            currentPageIndex = 1; // Navigate to Chapters screen
+            currentPageIndex = 1;
           });
         }),
 
