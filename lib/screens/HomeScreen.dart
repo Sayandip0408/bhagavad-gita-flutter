@@ -93,6 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Color(0xFFffffff),
       appBar: AppBar(
         backgroundColor: Color(0xFFffffff),
+        scrolledUnderElevation: 0,
         title: Text(
           "Bhagavad Gita",
           style: GoogleFonts.inter(

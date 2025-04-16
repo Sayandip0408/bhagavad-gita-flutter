@@ -13,6 +13,7 @@ class AboutScreen extends StatelessWidget {
       backgroundColor: Color(0xFFffffff),
       appBar: AppBar(
         backgroundColor: Color(0xFFffffff),
+        scrolledUnderElevation: 0,
         title: Text(
           "Developer Info",
           style: GoogleFonts.inter(
@@ -224,15 +225,7 @@ class AboutScreen extends StatelessWidget {
               "Hey! I found this amazing Bhagavad Gita app 📖✨. Check it out:\n$appUrl");
           final whatsappUrl = Uri.parse("https://wa.me/?text=$message");
 
-          if (await canLaunchUrl(whatsappUrl)) {
-            await launchUrl(whatsappUrl, mode: LaunchMode.externalApplication);
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                  content:
-                      Text("WhatsApp is not installed or cannot be opened.")),
-            );
-          }
+          await launchUrl(whatsappUrl, mode: LaunchMode.externalApplication);
         } else {
           final Uri uri = Uri.parse(url);
           await launchUrl(
