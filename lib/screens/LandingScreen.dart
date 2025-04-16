@@ -47,7 +47,12 @@ class _LandingScreenState extends State<LandingScreen> {
       ),
       body: <Widget>[
         /// Home page
-        HomeScreen(),
+        // HomeScreen(),
+        HomeScreen(onReadNowPressed: () {
+          setState(() {
+            currentPageIndex = 1; // Navigate to Chapters screen
+          });
+        }),
 
         /// Chapters page
         ChaptersScreen(),
